@@ -1,0 +1,17 @@
+def mlp(x,y,k,nb_of_iterations = 50,learning_rate=0.1):
+    #mlp(x,y,k,nb_of_iterations = 500,learning_rate=0.1):
+    a=0.1
+    b=1+a
+    wh=(b-a)*npr.rand(x.shape[1],k) + a
+    #wh=npr.rand(x.shape[1],k) 
+    wo=(b-a)*npr.rand(k,y.shape[1]) + a
+    #wo=npr.rand(k,y.shape[1])
+    
+    #lr_update = learning_rate / nb_of_iterations
+    
+    
+    
+    wh,wo,w_cost_iter,nb_of_iterations=backpropagation(x,y,wh,wo,nb_of_iterations,learning_rate=0.1)
+    #wh,wo=backpropagation(x,y,wh,wo,nb_of_iterations,learning_rate=0.1)
+        
+    return wh,wo,w_cost_iter,nb_of_iterations
