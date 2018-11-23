@@ -1,0 +1,19 @@
+def logistic(z): 
+    return 1 / (1 + np.exp(-z))
+
+# fonction d'activation sur la couche cachée
+def act_rbf(x, wh):
+    return rbf(np.dot(x ,wh))
+
+# fonction d'activation sur la couche de sortie
+def act_log(h , wo):
+    return logistic(np.dot(h, wo) - 1)
+
+# fonction de rn
+def nn(x, wh, wo): 
+    return act_log(act_log(x, wh), wo)
+
+# prédire fonction de rn
+#  1 or 0 depending on the predicted class
+def nn_predict(x, wh, wo): 
+    return np.around(nn(x, wh, wo))
