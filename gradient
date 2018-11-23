@@ -1,0 +1,19 @@
+# Define the error function
+def gradient_output(y, t):
+    return y - t
+
+# Define the gradient function for the weight parameter at the output layer
+def gradient_weight_out(h, grad_output): 
+    return  np.dot(np.transpose(h),grad_output)
+
+# Define the gradient function for the hidden layer
+def gradient_hidden(wo, grad_output):
+    return np.dot(wo , np.transpose(grad_output))
+
+# Define the gradient function for the weight parameter at the hidden layer
+def gradient_weight_hidden(x, h, grad_hidden):
+    
+    f = np.dot(np.transpose(h), 1-h) 
+    g = np.dot(f,grad_hidden) 
+    i = np.dot(g,x) 
+    return np.transpose(i)
