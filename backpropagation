@@ -1,0 +1,17 @@
+def backpropagation(x,y,wh,wo,nb_of_iterations,iter_max=100,learning_rate=0.1):
+    
+    lr_update = learning_rate / iter_max#nb_of_iterations
+    w_cost_iter = [(cost_for_param(x, wh, wo, y))]
+    
+    for i in range(nb_of_iterations):
+        #learning_rate=1/np.log(i+1)
+        learning_rate -= lr_update # decrease the learning rate
+        # Update the weights via backpropagation
+        wh, wo = backprop_update(x, y, wh, wo, learning_rate) 
+        w_cost_iter.append((cost_for_param(x, wh, wo, y)))
+        if(cost_for_param(x, wh, wo, y)<0.00001):
+            break
+        nb_of_iterations+=1
+        
+    return wo,wh,w_cost_iter,nb_of_iterations
+    
